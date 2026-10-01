@@ -1,24 +1,26 @@
-# cpp-container-template
+# Five-Letter Word Guessing Game
 
-## Getting Started
+A self-contained C++ console game inspired by Wordle. Guess the randomly
+selected five-letter word in six valid attempts.
 
-This repository is compatible with [cpp-container](https://github.com/ChicoState/cpp-container). If not already built on your machine, clone and build it.
-
-Run the container:
-
-```bash
-docker run -v "$(pwd)":/usr/src -it cpp-container
-```
-
-Run the application interactively in a shell:
+## Build and run
 
 ```bash
-docker run -v "$(pwd)":/usr/src -it cpp-container sh
+g++ -std=c++17 -Wall -Wextra -Wpedantic main.cpp game.cpp -o word_guessing_game
+./word_guessing_game
 ```
 
-## Structure
+Each guess must contain exactly five alphabetic letters. Feedback uses:
 
-* `.agents` - AI agent configurations and skills (in `/skills` subdirectory) for this project
-* `.` - The root directory contains the C++ code for the application as well as necessary scripts
-* `specs` - Specification documentation
-* `tests` - Test code
+- `[G]` for a letter in the correct position
+- `[Y]` for a letter that appears elsewhere in the answer
+- `[-]` for a letter not present in the remaining answer letters
+
+The game handles repeated letters using standard Wordle-style scoring and asks
+whether to start a new round after each win or loss.
+
+## Tests
+
+```bash
+./test_runner.sh
+```
